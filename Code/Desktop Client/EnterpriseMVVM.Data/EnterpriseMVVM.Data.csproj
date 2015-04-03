@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\Dependencies\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\Dependencies\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\Dependencies\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\Dependencies\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
