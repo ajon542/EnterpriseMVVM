@@ -12,7 +12,14 @@
         {
             using (var bc = new BusinessContext())
             {
-                bc.AddNewCustomer(null, "Jones");
+                var customer = new Customer
+                {
+                    Email = "ajon542@gmail.com",
+                    FirstName = null,
+                    LastName = "Jones"
+                };
+
+                bc.AddNewCustomer(customer);
             }
         }
 
@@ -22,7 +29,13 @@
         {
             using (var bc = new BusinessContext())
             {
-                bc.AddNewCustomer("", "Jones");
+                var customer = new Customer
+                {
+                    Email = "ajon542@gmail.com",
+                    FirstName = "",
+                    LastName = "Jones"
+                };
+                bc.AddNewCustomer(customer);
             }
         }
 
@@ -32,7 +45,13 @@
         {
             using (var bc = new BusinessContext())
             {
-                bc.AddNewCustomer("Andrew", null);
+                var customer = new Customer
+                {
+                    Email = "ajon542@gmail.com",
+                    FirstName = "Andrew",
+                    LastName = null
+                };
+                bc.AddNewCustomer(customer);
             }
         }
 
@@ -42,7 +61,13 @@
         {
             using (var bc = new BusinessContext())
             {
-                bc.AddNewCustomer("Andrew", "");
+                var customer = new Customer
+                {
+                    Email = "ajon542@gmail.com",
+                    FirstName = "Andrew",
+                    LastName = ""
+                };
+                bc.AddNewCustomer(customer);
             }
         }
     }

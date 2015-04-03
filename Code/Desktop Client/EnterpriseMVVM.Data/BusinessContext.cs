@@ -1,4 +1,6 @@
-﻿namespace EnterpriseMVVM.Data
+﻿using System.Runtime.CompilerServices;
+
+namespace EnterpriseMVVM.Data
 {
     using System;
 
@@ -17,44 +19,30 @@
             context = new DataContext();
         }
 
-        public Customer AddNewCustomer(string firstName, string lastName)
+        public void AddNewCustomer(Customer customer)
         {
-            #region Validation
-
-            if (firstName == null)
-            {
-                throw new ArgumentNullException("firstName", "firstName should not be null");
-            }
-
-            if (lastName == null)
-            {
-                throw new ArgumentNullException("lastName", "lastName should not be null");
-            }
-
-            if (string.IsNullOrEmpty(firstName))
-            {
-                throw new ArgumentException("firstName should not be empty");
-            }
-
-            if (string.IsNullOrEmpty(lastName))
-            {
-                throw new ArgumentException("lastName should not be empty");
-            }
-
-            #endregion
-
-            var customer = new Customer
-            {
-                FirstName = firstName,
-                LastName = lastName
-            };
+            Check.Require(customer.FirstName);
+            Check.Require(customer.LastName);
+            Check.Require(customer.Email);
 
             context.Customers.Add(customer);
             context.SaveChanges();
-
-            return customer;
         }
 
+        private static class Check
+        {
+            public static void Require(string value)
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else if (value.Trim().Length == 0)
+                {
+                    throw new ArgumentException();
+                }
+            }
+        }
 
         #region IDisposable Members
 
