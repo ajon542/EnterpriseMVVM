@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 namespace EnterpriseMVVM.Windows
 {
     using System;
@@ -28,7 +30,16 @@ namespace EnterpriseMVVM.Windows
             var results = new Collection<ValidationResult>();
             var isValid = Validator.TryValidateObject(this, context, results, true);
 
-            return !isValid ? results[0].ErrorMessage : null;
+            if (!isValid)
+            {
+                ValidationResult result =
+                    results.SingleOrDefault(p =>
+                        p.MemberNames.Any(memberName => memberName == propertyName));
+
+                return result == null ? null : result.ErrorMessage;
+            }
+
+            return null;
         }
     }
 }
